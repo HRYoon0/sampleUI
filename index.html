@@ -2,44 +2,121 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>6개의 버튼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample UI - 6개의 버튼 (GitHub 배경 이미지)</title>
   <style>
+    /* 기본 스타일 */
     body {
-      font-family: sans-serif;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center; /* 가로 중앙 정렬 */
+      align-items: center; /* 세로 중앙 정렬 */
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow: auto; /* 확대된 UI가 화면 밖으로 나갈 수 있으므로 스크롤 처리 */
+
+      /* ---- 배경 이미지 수정 (GitHub Raw URL 사용) ---- */
+      /* 아래 'YOUR_GITHUB_RAW_IMAGE_URL_HERE' 부분을 실제 GitHub 이미지 Raw URL로 바꿔주세요 */
+      background-image: url('YOUR_GITHUB_RAW_IMAGE_URL_HERE');
+      /* 예시: background-image: url('https://raw.githubusercontent.com/your-username/your-repo/main/images/bg.png'); */
+      /* ---------------------------------------------- */
+
+      background-size: cover; /* 배경 이미지를 화면 전체에 맞게 늘리거나 줄여서 표시 (비율 유지) */
+      background-position: center center; /* 배경 이미지를 화면 중앙에 배치 */
+      background-repeat: no-repeat; /* 배경 이미지가 반복되지 않도록 설정 */
+      background-attachment: fixed; /* 스크롤 시 배경 이미지는 고정 */
+    }
+
+    /* 전체 콘텐츠를 감싸는 컨테이너 (제목 + 버튼 그리드) */
+    .main-content-container {
+      display: flex;
+      flex-direction: column; /* 자식 요소들을 세로로 배치 */
+      align-items: center; /* 자식 요소들 (제목, 그리드)을 가로 중앙 정렬 */
+      max-width: 600px; /* 원본 최대 너비 유지 (scaling 전에 적용) */
+      width: 100%;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.85); /* 배경 이미지가 보이도록 반투명 흰색 배경 */
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+
+      /* ---- 크기 조정 적용 (이전 단계에서 요청된 1.5배 유지) ---- */
+      transform: scale(1.5); /* UI 전체 크기 조정 */
+      transform-origin: center center; /* 중앙을 기준으로 확대/축소 */
+      /* -------------------------------------------------------- */
+    }
+
+    /* 제목 스타일 */
+    .main-content-container h2 {
+      margin-top: 0;
+      margin-bottom: 30px;
+      color: #333;
+      font-size: 36px;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* 그리드 컨테이너 스타일 */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
+      width: 100%;
+    }
+
+    /* 버튼 공통 스타일 */
+    .btn {
+      width: 100%;
+      height: 120px;
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      background-color: #f0f0f0;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개 */
-      gap: 20px;
-    }
-    .btn {
-      padding: 20px;
-      font-size: 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+
+    /* 버튼 호버 효과 */
     .btn:hover {
-      background-color: #388E3C;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
+
+    /* 버튼 클릭 시 효과 */
+    .btn:active {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 버튼별 색상 (Material Design Inspired) */
+    .btn1 { background: linear-gradient(135deg, #ef5350, #e53935); } /* Red */
+    .btn2 { background: linear-gradient(135deg, #42a5f5, #2196f3); } /* Blue */
+    .btn3 { background: linear-gradient(135deg, #66bb6a, #4caf50); } /* Green */
+    .btn4 { background: linear-gradient(135deg, #ffb300, #ffa000); } /* Amber/Orange */
+    .btn5 { background: linear-gradient(135deg, #ab47bc, #9c27b0); } /* Purple */
+    .btn6 { background: linear-gradient(135deg, #26c6da, #00bcd4); } /* Cyan/Teal */
+
   </style>
 </head>
 <body>
-  <div class="grid-container">
-    <button class="btn">1</button>
-    <button class="btn">2</button>
-    <button class="btn">3</button>
-    <button class="btn">4</button>
-    <button class="btn">5</button>
-    <button class="btn">6</button>
+  <div class="main-content-container">
+    <h2>Sample UI</h2>
+
+    <div class="grid-container">
+      <button class="btn btn1">1</button>
+      <button class="btn btn2">2</button>
+      <button class="btn btn3">3</button>
+      <button class="btn btn4">4</button>
+      <button class="btn btn5">5</button>
+      <button class="btn btn6">6</button>
+    </div>
   </div>
 </body>
 </html>
